@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Fortress</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <div class="brand">
+            <div class="brand-badge">PF</div>
+            <div>
+                <h1>Password Fortress</h1>
+                <p>Generate and assess high-entropy passwords with Unicode support.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="wrap">
+        <h2>Build strong passwords before attackers test them.</h2>
+        <p class="hero-text">
+            Generate multilingual passwords, estimate entropy, and review crack-time scenarios in one place.
+        </p>
+    </div>
+</section>
+
+<main class="wrap main-grid">
+    <section class="panel">
+        <div class="panel-head">
+            <h3>Password Generator</h3>
+            <p>Select character families and create a strong password.</p>
+        </div>
+
+        <div class="range-row">
+            <label for="length">Password length</label>
+            <div class="range-value"><span id="lengthValue">20</span> characters</div>
+        </div>
+        <input type="range" id="length" min="4" max="64" value="20">
+
+        <div class="options-grid">
+            <label><input type="checkbox" id="includeLowercase" checked> Lowercase</label>
+            <label><input type="checkbox" id="includeUppercase" checked> Uppercase</label>
+            <label><input type="checkbox" id="includeDigits" checked> Digits</label>
+            <label><input type="checkbox" id="includeSymbols" checked> Symbols</label>
+            <label><input type="checkbox" id="includeSpace"> Space</label>
+            <label><input type="checkbox" id="includeGreek"> Greek</label>
+            <label><input type="checkbox" id="includeCyrillic"> Cyrillic</label>
+            <label><input type="checkbox" id="includeArabic"> Arabic</label>
+            <label><input type="checkbox" id="includeDevanagari"> Devanagari</label>
+            <label><input type="checkbox" id="includeJapaneseKana"> Japanese Kana</label>
+            <label><input type="checkbox" id="excludeAmbiguous"> Exclude ambiguous</label>
+            <label><input type="checkbox" id="requireEachSelectedSet" checked> Require every selected set</label>
+        </div>
+
+        <div class="btn-row">
+            <button id="generateBtn" class="btn btn-primary">Generate password</button>
+            <button id="copyBtn" class="btn btn-secondary">Copy</button>
+        </div>
+
+        <label class="field-label" for="passwordOutput">Generated password</label>
+        <textarea id="passwordOutput" rows="4" readonly></textarea>
+
+        <div class="strength-block">
+            <div class="strength-top">
+                <span>Strength level</span>
+                <strong id="strengthText">-</strong>
+            </div>
+            <div class="strength-meter">
+                <div id="strengthFill"></div>
+            </div>
+        </div>
+
+        <p id="message" class="message"></p>
+    </section>
+
+    <aside class="side-stack">
+        <section class="stat-panel">
+            <h3>Assessment</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span>Entropy</span>
+                    <strong id="entropyBits">-</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Pool size</span>
+                    <strong id="poolSize">-</strong>
+                </div>
+                <div class="stat-box full">
+                    <span>Character sets</span>
+                    <strong id="selectedSets">-</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="stat-panel">
+            <h3>Estimated crack time</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span>Online</span>
+                    <strong id="crackOnline">-</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Offline fast</span>
+                    <strong id="crackOfflineFast">-</strong>
+                </div>
+                <div class="stat-box full">
+                    <span>Offline slow</span>
+                    <strong id="crackOfflineSlow">-</strong>
+                </div>
+            </div>
+            <p id="noteText" class="note">-</p>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h3>Analyze your own password</h3>
+                <p>Estimate entropy and crack time for an existing password.</p>
+            </div>
+
+            <label class="field-label" for="analyzeInput">Password to analyze</label>
+            <textarea id="analyzeInput" rows="4" placeholder="Paste a password here to estimate its strength"></textarea>
+            <div class="btn-row">
+                <button id="analyzeBtn" class="btn btn-primary">Analyze password</button>
+            </div>
+        </section>
+    </aside>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <p>Use unique passwords for every account and store them in a trusted password manager.</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
